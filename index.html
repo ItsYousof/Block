@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block</title>
+    <link rel="stylesheet" href="assets/css/gameverse.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" href="assets/images/favicon.png">
+    <script src="uv/uv.bundle.js"></script>
+    <script src="uv/uv.config.js"></script>
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/uv/sw.js", {
+                    scope: __uv$config.prefix,
+                });
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-gamepad"></i> Block
+        </div>
+        <nav>
+            <a href="#" class="nav-item active" data-section="home">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="#" class="nav-item" data-section="games">
+                <i class="fas fa-gamepad"></i> Games
+            </a>
+            <a href="#" class="nav-item" data-section="apps">
+                <i class="fas fa-mobile-alt"></i> Apps
+            </a>
+            <a href="#" class="nav-item" data-section="search">
+                <i class="fas fa-search"></i> Search
+            </a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="section active" id="home">
+            <div class="banner">
+                <div class="banner-content">
+                    <h1>Welcome to Block</h1>
+                    <p><span class="typed-text"></span><span class="cursor">&nbsp;</span></p>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="search" id="proxy_search" placeholder="Search games or enter URL">
+            </div>
+
+            <h2>Latest games</h2>
+            <div class="game-grid">
+                <div class="game-card">
+                    <img src="assets/images/games/Time Shooter 3 .jpeg" alt="Time Shooter 3">
+                    <div class="game-card-content">
+                        <h3>Time Shooter 3</h3>
+                        <button class="play-btn" onclick="playGame('https://html5.gamedistribution.com/rvvASMiM/6493b872f0564380a7adad671d1e0a57/index.html')">Play Now</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="assets/images/games/stickman.jpeg" alt="Stickman">
+                    <div class="game-card-content">
+                        <h3>Stickman</h3>
+                        <button class="play-btn" onclick="playGame('https://stickman.pro/iframe/index.html')">Play Now</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="assets/images/games/Tiny Fishing.avif" alt="Tiny Fishing">
+                    <div class="game-card-content">
+                        <h3>Tiny Fishing</h3>
+                        <button class="play-btn" onclick="playGame('https://html5.gamedistribution.com/rvvASMiM/bf1268dccb5d43e7970bb3edaa54afc8/index.html')">Play Now</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="assets/images/games/Cookie Clicker.png" alt="Cookie Clicker">
+                    <div class="game-card-content">
+                        <h3>Cookie Clicker</h3>
+                        <button class="play-btn" onclick="playGame('https://orteil.dashnet.org/cookieclicker/')">Play Now</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="assets/images/games/1v1lol.png" alt="1v1.lol">
+                    <div class="game-card-content">
+                        <h3>1v1.lol</h3>
+                        <button class="play-btn" onclick="playGame('https://1v1.lol/')">Play Now</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="https://yepicdn.com/system/static/thumbs/tile_thumb/14431/thumb150_ovo-tile-kedit-191x191.jpg?1630481721" alt="OvO">
+                    <div class="game-card-content">
+                        <h3>OvO</h3>
+                        <button class="play-btn" onclick="playGame('https://html5.gamedistribution.com/rvvASMiM/1377b99c10284c229423118a941af3b1/index.html')">Play Now</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="assets/apps/discord.original.jpg" alt="Discord">
+                    <div class="game-card-content">
+                        <h3>Discord</h3>
+                        <button class="play-btn" onclick="playGame('https://discord.com/')">Play Now</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="assets/apps/geforce.jpeg" alt="GeForce NOW">
+                    <div class="game-card-content">
+                        <h3>GeForce NOW</h3>
+                        <button class="play-btn" onclick="playGame('https://www.nvidia.com/en-us/geforce-now/')">Play Now</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="assets/apps/roblox.png" alt="Roblox">
+                    <div class="game-card-content">
+                        <h3>Roblox</h3>
+                        <button class="play-btn" onclick="playGame('https://www.roblox.com/')">Play Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="games">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="search" id="game_search" placeholder="Search games...">
+            </div>
+
+            <h2>All Games</h2>
+            <div class="game-grid" id="all-games-grid">
+                <!-- All games will be populated here -->
+            </div>
+        </div>
+
+        <div class="section" id="apps">
+            <h2>Applications</h2>
+            <div class="game-grid" id="apps-grid">
+                <div class="game-card">
+                    <img src="assets/apps/discord.original.jpg" alt="Discord">
+                    <div class="game-card-content">
+                        <h3>Discord</h3>
+                        <button class="play-btn" onclick="playGame('https://discord.com/')">Launch</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="assets/apps/geforce.jpeg" alt="GeForce NOW">
+                    <div class="game-card-content">
+                        <h3>GeForce NOW</h3>
+                        <button class="play-btn" onclick="playGame('https://www.nvidia.com/en-us/geforce-now/')">Launch</button>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="assets/apps/roblox.png" alt="Roblox">
+                    <div class="game-card-content">
+                        <h3>Roblox</h3>
+                        <button class="play-btn" onclick="playGame('https://www.roblox.com/')">Launch</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="search">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="search" id="main_search" placeholder="Search games, apps, or enter URL">
+            </div>
+            <div id="search-results" class="game-grid">
+                <!-- Search results will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function playGame(url) {
+            window.location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
+        }
+
+        function urlChecker(url) {
+            let searchUrl = 'https://www.google.com/search?q=';
+            if (!url.includes(".")) {
+                url = searchUrl + encodeURIComponent(url);
+            } else {
+                if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                    // if no http or https is detected, add https automatically
+                    url = "https://" + url;
+                }
+            }
+
+            return url;
+        }
+
+        document.getElementById('proxy_search').addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                const url = document.getElementById('proxy_search').value;
+                window.location.href = __uv$config.prefix + __uv$config.encodeUrl(urlChecker(url));
+            }
+        });
+
+        // Game search functionality
+        document.getElementById('game_search').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const gameCards = document.querySelectorAll('.game-card');
+
+            gameCards.forEach(card => {
+                const gameName = card.querySelector('h3').textContent.toLowerCase();
+                if (gameName.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Tab functionality
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('.section');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Remove active class from all nav items and sections
+                navItems.forEach(nav => nav.classList.remove('active'));
+                sections.forEach(section => section.classList.remove('active'));
+
+                // Add active class to clicked nav item
+                item.classList.add('active');
+
+                // Show corresponding section
+                const sectionId = item.getAttribute('data-section');
+                document.getElementById(sectionId).classList.add('active');
+            });
+        });
+
+        document.getElementById('main_search').addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                const url = document.getElementById('main_search').value;
+                window.location.href = __uv$config.prefix + __uv$config.encodeUrl(urlChecker(url));
+            }
+        });
+
+        const typedTextSpan = document.querySelector(".typed-text");
+        const cursorSpan = document.querySelector(".cursor");
+
+        const textArray = [
+            "Your gateway to endless gaming entertainment",
+            "Unblock your favorite games instantly",
+            "Play anywhere, anytime, no restrictions",
+            "Access the latest and greatest games",
+            "Join thousands of gamers worldwide",
+            "Experience gaming freedom like never before",
+            "Break through limitations, play without bounds",
+            "Your one-stop destination for online gaming",
+            "Game on your terms, without barriers",
+            "Unlock a world of infinite possibilities"
+        ];
+
+        let textArrayIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let isEnd = false;
+
+        function type() {
+            isEnd = false;
+            const currentText = textArray[textArrayIndex];
+
+            if(!isDeleting && charIndex < currentText.length) {
+                typedTextSpan.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            } else if(isDeleting && charIndex > 0) {
+                typedTextSpan.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else if(charIndex === 0) {
+                isDeleting = false;
+                textArrayIndex = (textArrayIndex + 1) % textArray.length;
+            } else if(charIndex === currentText.length) {
+                isEnd = true;
+                isDeleting = true;
+            }
+
+            const speedUp = 30;
+            const normalSpeed = isEnd ? 2000 : 100;
+            const time = isDeleting ? speedUp : normalSpeed;
+            setTimeout(type, time);
+        }
+
+        type();
+    </script>
+    <iframe src="" frameborder="0" id="iframeWindow"></iframe>
+    <script src="assets/js/games.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>
